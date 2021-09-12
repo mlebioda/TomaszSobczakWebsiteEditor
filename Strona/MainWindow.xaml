@@ -1,0 +1,30 @@
+﻿<Window x:Class="Strona.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Strona"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Menu DockPanel.Dock="Top" Height="22" VerticalAlignment="Top">
+            <MenuItem Header="Plik">
+                <MenuItem Header="Otwórz folder" />
+                <MenuItem Header="Zapisz jako" />
+            </MenuItem>
+        </Menu>
+        <TabControl  Margin="3,22,3,0">
+            <TabItem Header="Obrazy">
+                <Grid Background="#FFE5E5E5">
+                    
+                </Grid>
+            </TabItem>
+            <TabItem Header="Fotografia">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Teksty">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
