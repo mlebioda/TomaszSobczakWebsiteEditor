@@ -6,68 +6,68 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
+
 namespace Strona.Model
 {
-    public class Dropdown : INotifyPropertyChanged
+    public class Website : INotifyPropertyChanged
     {
-        List<Filter> m_filters;
-        UlItem m_ul;
-        string m_caption;
 
-        public Dropdown()
+        NavItem obrazy;
+        NavItem teksty;
+        NavItem fotografia;
+
+        public Website()
         {
-            m_filters = new List<Filter>();
-            m_ul = new UlItem();
-            m_caption = "";
+            obrazy = new NavItem();
+            teksty = new NavItem();
+            fotografia = new NavItem();
         }
 
-        public string Caption
+        public NavItem Obrazy
         {
-            get
-            {
-                return m_caption;
-            }
+            get { return obrazy; }
             set
             {
-                if(value != m_caption)
+                if(obrazy != value)
                 {
-                    m_caption = value;
+                    obrazy = value;
                     RaisePropertyChanged();
-                }    
+                }
             }
         }
-
-        public List<Filter> Filters
+        public NavItem Teksty
         {
-            get { return m_filters; }
+            get { return teksty; }
             set
             {
-                if( m_filters != value)
+                if(teksty != value)
                 {
-                    m_filters = value;
+                    teksty = value;
                     RaisePropertyChanged();
                 }
             }
         }
         
-        public UlItem Ul
+        public NavItem Fotografia
         {
-            get { return m_ul; }
+            get { return fotografia; }
             set
             {
-                if(m_ul != value)
+                if(fotografia != value)
                 {
-                    m_ul = value;
+                    fotografia = value;
                     RaisePropertyChanged();
                 }
             }
         }
 
+
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void RaisePropertyChanged([CallerMemberName] string property = "")
+        public void RaisePropertyChanged([CallerMemberName] string property = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
+
     }
 }
