@@ -1,24 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Strona.Model
 {
-    public class UlItem
+    public enum ItemType
     {
-        List<Filter> filters;
-        UlItem ul;
+        image, text
+    }
+    public class Item : INotifyPropertyChanged
+    {
         string caption;
+        string src;
+        string tag;
 
-        public UlItem()
+        public Item()
         {
-           // ul = new UlItem();
-            filters = new List<Filter>();
             caption = "";
+            src = "";
+            tag = "";
+
         }
 
         public string Caption
@@ -26,36 +31,36 @@ namespace Strona.Model
             get { return caption; }
             set
             {
-                if(caption != value)
+                if (caption != value)
                 {
                     caption = value;
                     RaisePropertyChanged();
                 }
             }
         }
-
-
-        public UlItem Ul
+        public string Tag
         {
-            get { return ul; }
+            get { return tag; }
             set
             {
-                if( ul != value)
+                if (tag != value)
                 {
-                    ul = value;
+                    tag = value;
                     RaisePropertyChanged();
                 }
+
             }
         }
 
-        public List<Filter> Filters
+
+        public string Src
         {
-            get { return filters; }
+            get { return src; }
             set
             {
-                if( filters != value)
+                if (src != value)
                 {
-                    filters = value;
+                    src = value;
                     RaisePropertyChanged();
                 }
             }
@@ -63,7 +68,7 @@ namespace Strona.Model
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void RaisePropertyChanged([CallerMemberName] string property = "")
+        public void RaisePropertyChanged([CallerMemberName] string property = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }

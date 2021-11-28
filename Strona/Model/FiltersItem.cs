@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace Strona.Model
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+namespace Strona.Model 
 {
-    public class Filters
+    public class FiltersItem : INotifyPropertyChanged
     {
         List<Filter> m_filters;
         Dropdown m_dropdown;
 
-        public Filters()
+        public FiltersItem()
         {
             m_filters = new List<Filter>();
-            //DropDown = null
+            //m_dropdown = new Dropdown();
         }
 
-        public List<Filter> filters
+        public List<Filter> Filters
         {
             get { return m_filters; }
             set
@@ -25,20 +26,20 @@ namespace Strona.Model
                 if(m_filters != value)
                 {
                     m_filters = value;
-                    //RaisePropertyChanged
+                    RaisePropertyChanged();
                 }
             }
         }
 
-        public Dropdown dropdown
+        /*public Dropdown Dropdown
         {
             get { return m_dropdown; }
             set
             {
                 if( m_dropdown != value)
                 {
-                    dropdown = value;
-                    //RaisePropertyChanged
+                    m_dropdown = value;
+                    RaisePropertyChanged();
                 }
             }
         }
@@ -50,7 +51,14 @@ namespace Strona.Model
             else
                 return true;
         }
+        */
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void RaisePropertyChanged([CallerMemberName] string property = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+        }
 
     }
 }

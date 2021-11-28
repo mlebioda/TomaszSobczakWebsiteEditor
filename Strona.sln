@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Strona", "Strona\Strona.csproj", "{371257F8-DED0-425E-8390-2A82DA93D3EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StronaUnitTests", "StronaUnitTests\StronaUnitTests.csproj", "{F4D69ACA-75AD-48FA-9741-CBB11473424D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{371257F8-DED0-425E-8390-2A82DA93D3EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{371257F8-DED0-425E-8390-2A82DA93D3EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{371257F8-DED0-425E-8390-2A82DA93D3EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4D69ACA-75AD-48FA-9741-CBB11473424D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4D69ACA-75AD-48FA-9741-CBB11473424D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4D69ACA-75AD-48FA-9741-CBB11473424D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4D69ACA-75AD-48FA-9741-CBB11473424D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
