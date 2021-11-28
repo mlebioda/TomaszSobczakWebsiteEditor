@@ -12,6 +12,7 @@ namespace Strona.Model
     {
         string m_caption;
         string m_tag;
+        Dropdown m_dropdown;
 
         public Filter()
         {
@@ -42,6 +43,27 @@ namespace Strona.Model
                     RaisePropertyChanged();
                 }
             }
+        }
+
+        public Dropdown Dropdown
+        {
+            get { return m_dropdown; }
+            set
+            {
+                if (m_dropdown != value)
+                {
+                    m_dropdown = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        public bool IsDropdown()
+        {
+            if (m_dropdown == null)
+                return false;
+            else
+                return true;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

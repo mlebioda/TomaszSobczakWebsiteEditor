@@ -31,7 +31,7 @@ namespace Strona.Model
             }
         }
 
-        public Dropdown Dropdown
+        /*public Dropdown Dropdown
         {
             get { return m_dropdown; }
             set
@@ -51,6 +51,7 @@ namespace Strona.Model
             else
                 return true;
         }
+        */
 
         public event PropertyChangedEventHandler PropertyChanged;
 

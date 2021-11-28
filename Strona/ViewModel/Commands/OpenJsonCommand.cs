@@ -10,7 +10,7 @@ using System.IO;
 
 namespace Strona.ViewModel.Commands
 {
-    public class OpenFolderCommand : ICommand
+    public class OpenJsonCommand : ICommand
     {
         public JsonVM ViewModel { get; set; }
         public event EventHandler CanExecuteChanged
@@ -23,49 +23,34 @@ namespace Strona.ViewModel.Commands
         {
             return true;
         }
+       
 
         public void Execute(object parameter)
         {
             if (Helpers.CommandsHelpers.AskForOverwriteFile(ViewModel) == false)
                 return;
 
-            this.ViewModel.Path = CommandsHelpers.OpenFolder();
+            
+            this.ViewModel.Path = CommandsHelpers.OpenFile();
+
+            if (!File.Exists(this.ViewModel.Path))
+                return;
+
+
             NavItem<Image> fotografia = new NavItem<Image>(ItemType.image);
             NavItem<Image> obrazy = new NavItem<Image>(ItemType.image);
             NavItem<TextItem> teksty = new NavItem<TextItem>(ItemType.text);
 
-            if (!Directory.Exists(this.ViewModel.Path))
-                return; 
 
-            CommandsHelpers.GetItemsFromDirectory(this.ViewModel.Path, ref obrazy, ref fotografia, ref teksty);
+            CommandsHelpers.GetItemsFromFile(this.ViewModel.Path, ref obrazy, ref fotografia, ref teksty);
 
             this.ViewModel.Teksty = teksty;
             this.ViewModel.Fotografia = fotografia;
             this.ViewModel.Obrazy = obrazy;
 
-            this.ViewModel.TextTags = getTextTags(teksty);
-            if (this.ViewModel.TextTags.Count < 0)
-                this.ViewModel.SelectedTextTag = this.ViewModel.TextTags[0];
-
         }
 
-        List<string> getTextTags(NavItem<TextItem> teksty)
-        {
-            if (teksty.Items.Count == 0)
-                return new List<string>();
-
-            List<string> tags = new List<string>();
-
-            foreach(TextItem item in teksty.Items)
-            {
-                if (item.Tag != "")
-                    tags.Add(item.Tag);
-            }
-
-            return tags;
-        }
-
-        public OpenFolderCommand( JsonVM viewModel )
+        public OpenJsonCommand( JsonVM viewModel )
         {
             this.ViewModel = viewModel;
         }

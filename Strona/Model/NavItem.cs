@@ -9,23 +9,55 @@ using System.Runtime.CompilerServices;
 
 namespace Strona.Model
 {
-    public class NavItem : INotifyPropertyChanged
+    
+    public class NavItem<T> : INotifyPropertyChanged
     {
-        FiltersItem filters;
-        List<Image> images;
+        // FiltersItem filters;
+        List<Filter> filters;
+        List<T> items;
+        ItemType type;
 
-        public NavItem()
+        public NavItem(ItemType t)
         {
-            filters = new FiltersItem();
-            images = new List<Image>();
+            //filters = new FiltersItem();
+            filters = new List<Filter>();
+            items = new List<T>();
+            type = t;
         }
 
-        public FiltersItem Filters
+        public ItemType getType()
+        {
+            return type;
+        }
+
+        /* public FiltersItem Filters
+         {
+             get { return filters; }
+             set
+             {
+                 if( filters != value)
+                 {
+                     filters = value;
+                     RaisePropertyChanged();
+                 }
+             }
+         }
+        
+        */
+        public bool isValid()
+        {
+            if (items.Count > 0 )
+                return true;
+            else
+                return false;
+        }
+
+        public List<Filter> Filters
         {
             get { return filters; }
             set
             {
-                if( filters != value)
+                if (filters != value)
                 {
                     filters = value;
                     RaisePropertyChanged();
@@ -33,14 +65,14 @@ namespace Strona.Model
             }
         }
 
-        public List<Image> Images
+        public List<T> Items
         {
-            get { return images; }
+            get { return items; }
             set
             {
-                if( images != value )
+                if( items != value )
                 {
-                    images = value;
+                    items = value;
                     RaisePropertyChanged();
                 }
             }

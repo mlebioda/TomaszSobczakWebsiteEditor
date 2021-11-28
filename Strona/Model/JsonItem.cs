@@ -8,18 +8,18 @@ namespace Strona.Model
 {
     public class JsonItem
     {
-        NavItem obrazy;
-        NavItem fotografia;
-        NavItem teksty;
+        NavItem<Image> obrazy;
+        NavItem<Image> fotografia;
+        NavItem<TextItem> teksty;
 
-        public JsonItem( NavItem o, NavItem f, NavItem t)
+        public JsonItem( NavItem<Image> o, NavItem<Image> f, NavItem<TextItem> t)
         {
             obrazy = o;
             fotografia = f;
             teksty = t;
         }
 
-        public NavItem Obrazy
+        public NavItem<Image> Obrazy
         {
             get { return obrazy; }
             set
@@ -31,7 +31,7 @@ namespace Strona.Model
             }
         }
 
-        public NavItem Fotografia
+        public NavItem<Image> Fotografia
         {
             get { return fotografia; }
             set
@@ -43,7 +43,7 @@ namespace Strona.Model
             }
         }
 
-        public NavItem Teksty
+        public NavItem<TextItem> Teksty
         {
             get { return teksty; }
             set

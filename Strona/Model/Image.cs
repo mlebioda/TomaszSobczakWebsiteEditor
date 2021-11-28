@@ -8,51 +8,18 @@ using System.Runtime.CompilerServices;
 
 namespace Strona.Model
 {
-    public class Image : INotifyPropertyChanged
+    public class Image : Item
     {
-        string caption;
-        string tag;
         string size;
         string material;
         string alt;
-        string src;
 
 
         public Image()
         {
-            caption = "";
-            tag = "";
             size = "";
             material = "";
             alt = "";
-            src = "";
-        }
-
-        public string Caption 
-        {
-            get { return caption; }
-            set
-            {
-                if (caption != value)
-                {
-                    caption = value;
-                    RaisePropertyChanged();
-                }
-
-            }
-        }
-        public string Tag
-        {
-            get { return tag; }
-            set
-            {
-                if (tag != value)
-                {
-                    tag = value;
-                    RaisePropertyChanged();
-                }
-
-            }
         }
 
         public string Size
@@ -94,25 +61,6 @@ namespace Strona.Model
 
             }
         }
-        public string Src
-        {
-            get { return src; }
-            set
-            {
-                if (src != value)
-                {
-                    src = value;
-                    RaisePropertyChanged();
-                }
 
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void RaisePropertyChanged([CallerMemberName] string property = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
-        }
     }
 }

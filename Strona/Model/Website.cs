@@ -12,18 +12,18 @@ namespace Strona.Model
     public class Website : INotifyPropertyChanged
     {
 
-        NavItem obrazy;
-        NavItem teksty;
-        NavItem fotografia;
+        NavItem<Image> obrazy;
+        NavItem<TextItem> teksty;
+        NavItem<Image> fotografia;
 
         public Website()
         {
-            obrazy = new NavItem();
-            teksty = new NavItem();
-            fotografia = new NavItem();
+            obrazy = new NavItem<Image>(ItemType.image);
+            teksty = new NavItem<TextItem>(ItemType.image);
+            fotografia = new NavItem<Image>(ItemType.text);
         }
 
-        public NavItem Obrazy
+        public NavItem<Image> Obrazy
         {
             get { return obrazy; }
             set
@@ -35,7 +35,7 @@ namespace Strona.Model
                 }
             }
         }
-        public NavItem Teksty
+        public NavItem<TextItem> Teksty
         {
             get { return teksty; }
             set
@@ -48,7 +48,7 @@ namespace Strona.Model
             }
         }
         
-        public NavItem Fotografia
+        public NavItem<Image> Fotografia
         {
             get { return fotografia; }
             set
