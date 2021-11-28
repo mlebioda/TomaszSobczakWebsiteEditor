@@ -42,7 +42,7 @@
                     <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding ObrazySelectedItem.Alt}" VerticalAlignment="Top" Width="414" Grid.Column="1" Margin="0,69,0,0"/>
                     <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding ObrazySelectedItem.Material}" VerticalAlignment="Top" Width="414" Grid.Column="1" Margin="0,97,0,0"/>
                     <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding ObrazySelectedItem.Size}" VerticalAlignment="Top" Width="414" Grid.Column="1" Margin="0,125,0,0"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding ObrazySelectedItem.Src}"  IsReadOnly="True" IsEnabled="False" VerticalAlignment="Top" Width="414" Grid.Column="1" Margin="0,155,0,0"/>
+                    <TextBox HorizontalAlignment="Left" Height="38" TextWrapping="Wrap" Text="{Binding ObrazySelectedItem.Src}"  IsReadOnly="True" IsEnabled="False" VerticalAlignment="Top" Width="414" Grid.Column="1" Margin="0,155,0,0"/>
 
                 </Grid>
             </TabItem>
@@ -67,7 +67,7 @@
                     <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding FotografiaSelectedItem.Alt}" VerticalAlignment="Top" Width="414" Grid.Column="2" Margin="0,68,0,0"/>
                     <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding FotografiaSelectedItem.Material}" VerticalAlignment="Top" Width="414" Grid.Column="2" Margin="0,97,0,0"/>
                     <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding FotografiaSelectedItem.Size}" VerticalAlignment="Top" Width="414" Grid.Column="2" Margin="0,125,0,0"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding FotografiaSelectedItem.Src}"  IsReadOnly="True" IsEnabled="False" VerticalAlignment="Top" Width="414" Grid.Column="2" Margin="0,155,0,0"/>
+                    <TextBox HorizontalAlignment="Left" Height="39" TextWrapping="Wrap" Text="{Binding FotografiaSelectedItem.Src}"  IsReadOnly="True" IsEnabled="False" VerticalAlignment="Top" Width="414" Grid.Column="2" Margin="0,155,0,0"/>
 
                 </Grid>
             </TabItem>
@@ -87,7 +87,7 @@
                     <Label Content="Tag" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,39,0,0" Height="26" Width="28"/>
                     <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding TekstySelectedItem.Caption}" VerticalAlignment="Top" Width="414" Grid.Column="1" Margin="0,10,0,0"/>
                     <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding TekstySelectedItem.Tag}" IsReadOnly="True"  IsEnabled="False" VerticalAlignment="Top" Width="414" Margin="0,41,0,0" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding TekstySelectedItem.Src}" IsReadOnly="True" IsEnabled="False" VerticalAlignment="Top" Width="414" Grid.Column="1" Margin="0,100,0,0"/>
+                    <TextBox HorizontalAlignment="Left" Height="38" TextWrapping="Wrap" Text="{Binding TekstySelectedItem.Src}" IsReadOnly="True" IsEnabled="False" VerticalAlignment="Top" Width="414" Grid.Column="1" Margin="0,100,0,0"/>
                     <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top"  SelectedIndex="{Binding TekstySelectedItem.AdjustI, Mode=TwoWay}" ItemsSource="{Binding AdjustList}"   Width="120" Grid.Column="1" Margin="0,69,0,0"/>
                     <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" SelectedIndex="{Binding SelectedAdjust}" ItemsSource="{Binding AdjustList}"   Width="120" Grid.Column="1" Margin="135,188,0,0"/>
                     <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top"   SelectedItem="{Binding SelectedTextTag}" ItemsSource="{Binding TextTags}"   Width="120" Grid.Column="1" Margin="10,188,0,0"/>

@@ -151,7 +151,20 @@ namespace Strona.ViewModel.Commands.Helpers
                     );
             }
         }
+        private static string prepareCaption(string name)
+        {
+            string caption = name;
+            if (caption.Contains("_"))
+            {
+                caption = caption.Replace("_", " ");
+            }
+            if (caption.Contains("-"))
+            {
+                caption = caption.Replace("-", " ");
+            }
+            return caption;
 
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -205,16 +218,26 @@ namespace Strona.ViewModel.Commands.Helpers
                         foreach(FileInfo file in dir.GetFiles())
                         {
                             if (navItem.getType() == ItemType.image)
-                                navItem.Items.Add(
+                            {
+                                if (validateImageExtenstion(file.Extension))
+                                {
+                                    navItem.Items.Add(
                                     (T)Convert.ChangeType(
-                                        getImageFromFile(prepareName(dir.Name) ,file), typeof(T))
+                                        getImageFromFile(prepareName(dir.Name), file), typeof(T))
                                     );
+                                }
+                            }
                             else
-                                navItem.Items.Add(
+                            {
+                                if (validateTextExtenstion(file.Extension))
+                                {
+                                    navItem.Items.Add(
                                     (T)Convert.ChangeType(
                                         getTextItemFromFile(prepareName(dir.Name), file), typeof(T)
                                         )
                                     );
+                                }
+                            }
                             //navItem.Items.Add(getItemFromFile(prepareName(dir.Name), file));
                         }
 
@@ -229,19 +252,55 @@ namespace Strona.ViewModel.Commands.Helpers
                 {
 
                     if (navItem.getType() == ItemType.image)
+                    {
+                        if (validateImageExtenstion(file.Extension)) 
+                        { 
                         navItem.Items.Add(
                             (T)Convert.ChangeType(
                                 getImageFromFile("", file), typeof(T))
                             );
+                        }
+                    }
                     else
-                        navItem.Items.Add(
-                            (T)Convert.ChangeType(
-                                getTextItemFromFile("", file), typeof(T)
-                                )
-                            );
+                    {
+                        if (validateTextExtenstion(file.Extension))
+                        {
+                            navItem.Items.Add(
+                                (T)Convert.ChangeType(
+                                    getTextItemFromFile("", file), typeof(T)
+                                    )
+                                );
+                        }
+                    }
                 }
             }
 
+
+        }
+
+        public static bool validateImageExtenstion(string ext)
+        {
+            if(
+                ext.ToLower().Equals(".jpg") ||
+                ext.ToLower().Equals(".png") ||
+                ext.ToLower().Equals(".jpeg") 
+                ) { return true; }
+            else
+            {
+                return false;
+            }
+                
+        }
+        
+        public static bool validateTextExtenstion(string ext)
+        {
+            if (
+                ext.ToLower().Equals(".txt") 
+                ) { return true; }
+            else
+            {
+                return false;
+            }
 
         }
 
@@ -267,17 +326,28 @@ namespace Strona.ViewModel.Commands.Helpers
 
                     foreach (FileInfo file in subDir.GetFiles())
                     {
-                        if(navItem.getType() == ItemType.image)
-                            navItem.Items.Add(
+                        if (navItem.getType() == ItemType.image)
+                        {
+                            if (validateImageExtenstion(file.Extension))
+                            {
+
+                                navItem.Items.Add(
                                 (T)Convert.ChangeType(
                                     getImageFromFile(prepareName(subDir.Name)/*, subDir.Name*/, file), typeof(T))
                                 );
+                            }
+                        }
                         else
-                            navItem.Items.Add(
+                        {
+                            if (validateTextExtenstion(file.Extension))
+                            {
+                                navItem.Items.Add(
                                 (T)Convert.ChangeType(
-                                    getTextItemFromFile(prepareName(subDir.Name)/*, subDir.Name*/, file) , typeof(T)
+                                    getTextItemFromFile(prepareName(subDir.Name)/*, subDir.Name*/, file), typeof(T)
                                     )
                                 );
+                            }
+                        }
 
                     }
 
@@ -308,17 +378,26 @@ namespace Strona.ViewModel.Commands.Helpers
                     foreach (FileInfo file in subDir.GetFiles())
                     {
                         if (navItem.getType() == ItemType.image)
-                            navItem.Items.Add(
+                        {
+                            if (validateImageExtenstion(file.Extension))
+                            {
+                                navItem.Items.Add(
                                 (T)Convert.ChangeType(
                                     getImageFromFile(prepareName(subDir.Name)/*, subDir.Name*/, file), typeof(T))
                                 );
+                            }
+                        }
                         else
-                            navItem.Items.Add(
+                        {
+                            if (validateTextExtenstion(file.Extension))
+                            { 
+                                navItem.Items.Add(
                                 (T)Convert.ChangeType(
                                     getTextItemFromFile(prepareName(subDir.Name)/*, subDir.Name*/, file), typeof(T)
                                     )
                                 );
-
+                            }
+                        }
                     }
                 }
             }
@@ -355,8 +434,8 @@ namespace Strona.ViewModel.Commands.Helpers
            
             //TODO
             Image img = new Image();
-            img.Caption = Path.GetFileNameWithoutExtension(file.Name);
-            img.Alt = Path.GetFileNameWithoutExtension(file.Name);
+            img.Caption = prepareCaption(Path.GetFileNameWithoutExtension(file.Name));
+            img.Alt = prepareCaption(Path.GetFileNameWithoutExtension(file.Name));
             img.Material = "";
             img.Tag = filterTag;
             img.Size = "";
@@ -370,7 +449,7 @@ namespace Strona.ViewModel.Commands.Helpers
 
             //TODO
             TextItem txt = new TextItem();
-            txt.Caption = Path.GetFileNameWithoutExtension(file.Name);
+            txt.Caption = prepareCaption(Path.GetFileNameWithoutExtension(file.Name));
             txt.Tag = filterTag;
             txt.Src = getPath(file.FullName); //asets/img/MaindirName + path
             txt.Adjust = TextAdjust.left;
@@ -705,5 +784,21 @@ namespace Strona.ViewModel.Commands.Helpers
             resultDialog.Show();
         }
         #endregion
+
+        public static List<string> getTextTags(NavItem<TextItem> teksty)
+        {
+            if (teksty.Items.Count == 0)
+                return new List<string>();
+
+            List<string> tags = new List<string>();
+
+            foreach (TextItem item in teksty.Items)
+            {
+                if (item.Tag != "" && !tags.Contains(item.Tag))
+                    tags.Add(item.Tag);
+            }
+
+            return tags;
+        }
     }
 }

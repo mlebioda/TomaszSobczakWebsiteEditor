@@ -43,27 +43,13 @@ namespace Strona.ViewModel.Commands
             this.ViewModel.Fotografia = fotografia;
             this.ViewModel.Obrazy = obrazy;
 
-            this.ViewModel.TextTags = getTextTags(teksty);
+            this.ViewModel.TextTags = CommandsHelpers.getTextTags(teksty);
             if (this.ViewModel.TextTags.Count < 0)
                 this.ViewModel.SelectedTextTag = this.ViewModel.TextTags[0];
 
         }
 
-        List<string> getTextTags(NavItem<TextItem> teksty)
-        {
-            if (teksty.Items.Count == 0)
-                return new List<string>();
-
-            List<string> tags = new List<string>();
-
-            foreach(TextItem item in teksty.Items)
-            {
-                if (item.Tag != "")
-                    tags.Add(item.Tag);
-            }
-
-            return tags;
-        }
+       
 
         public OpenFolderCommand( JsonVM viewModel )
         {

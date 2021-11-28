@@ -48,6 +48,9 @@ namespace Strona.ViewModel.Commands
             this.ViewModel.Fotografia = fotografia;
             this.ViewModel.Obrazy = obrazy;
 
+            this.ViewModel.TextTags = CommandsHelpers.getTextTags(teksty);
+            if (this.ViewModel.TextTags.Count < 0)
+                this.ViewModel.SelectedTextTag = this.ViewModel.TextTags[0];
         }
 
         public OpenJsonCommand( JsonVM viewModel )

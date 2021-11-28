@@ -76,26 +76,12 @@ namespace Strona.ViewModel.Commands
             this.ViewModel.Fotografia = dirFotografia;
             this.ViewModel.Obrazy = dirObrazy;
 
-            this.ViewModel.TextTags = getTextTags(dirTeksty);
+            this.ViewModel.TextTags = CommandsHelpers.getTextTags(dirTeksty);
             if (this.ViewModel.TextTags.Count < 0)
                 this.ViewModel.SelectedTextTag = this.ViewModel.TextTags[0];
         }
 
-        List<string> getTextTags(NavItem<TextItem> teksty)
-        {
-            if (teksty.Items.Count == 0)
-                return new List<string>();
 
-            List<string> tags = new List<string>();
-
-            foreach(TextItem item in teksty.Items)
-            {
-                if (item.Tag != "")
-                    tags.Add(item.Tag);
-            }
-
-            return tags;
-        }
 
         public UpdateJsonCommand( JsonVM viewModel )
         {
