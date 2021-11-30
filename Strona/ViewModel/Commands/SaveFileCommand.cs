@@ -38,7 +38,7 @@ namespace Strona.ViewModel.Commands
 
         public void Execute(object parameter)
         {
-            JsonItem jsonItem = new JsonItem(ViewModel.Obrazy, ViewModel.Fotografia, ViewModel.Teksty);
+            JsonItem jsonItem = new JsonItem(ViewModel.Obrazy, ViewModel.Fotografia, ViewModel.Teksty, ViewModel.Artysta);
             CommandsHelpers.SaveJson(jsonItem);
             
 

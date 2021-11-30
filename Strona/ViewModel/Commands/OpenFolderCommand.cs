@@ -32,16 +32,18 @@ namespace Strona.ViewModel.Commands
             this.ViewModel.Path = CommandsHelpers.OpenFolder();
             NavItem<Image> fotografia = new NavItem<Image>(ItemType.image);
             NavItem<Image> obrazy = new NavItem<Image>(ItemType.image);
+            NavItem<Image> artysta = new NavItem<Image>(ItemType.image);
             NavItem<TextItem> teksty = new NavItem<TextItem>(ItemType.text);
 
             if (!Directory.Exists(this.ViewModel.Path))
                 return; 
 
-            CommandsHelpers.GetItemsFromDirectory(this.ViewModel.Path, ref obrazy, ref fotografia, ref teksty);
+            CommandsHelpers.GetItemsFromDirectory(this.ViewModel.Path, ref obrazy, ref fotografia, ref teksty, ref artysta);
 
             this.ViewModel.Teksty = teksty;
             this.ViewModel.Fotografia = fotografia;
             this.ViewModel.Obrazy = obrazy;
+            this.ViewModel.Artysta = artysta;
 
             this.ViewModel.TextTags = CommandsHelpers.getTextTags(teksty);
             if (this.ViewModel.TextTags.Count < 0)

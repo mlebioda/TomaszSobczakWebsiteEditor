@@ -11,12 +11,18 @@ namespace Strona.Model
         NavItem<Image> obrazy;
         NavItem<Image> fotografia;
         NavItem<TextItem> teksty;
+        NavItem<Image> artysta;
 
-        public JsonItem( NavItem<Image> o, NavItem<Image> f, NavItem<TextItem> t)
+        public JsonItem(
+            NavItem<Image> o,
+            NavItem<Image> f,
+            NavItem<TextItem> t,
+            NavItem<Image> a)
         {
             obrazy = o;
             fotografia = f;
             teksty = t;
+            artysta = a;
         }
 
         public NavItem<Image> Obrazy
@@ -27,6 +33,18 @@ namespace Strona.Model
                 if (obrazy != value)
                 {
                     obrazy = value;
+                }
+            }
+        }
+        
+        public NavItem<Image> Artysta
+        {
+            get { return artysta; }
+            set
+            {
+                if (artysta != value)
+                {
+                    artysta = value;
                 }
             }
         }

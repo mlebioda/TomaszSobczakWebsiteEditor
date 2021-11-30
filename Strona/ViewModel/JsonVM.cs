@@ -15,6 +15,7 @@ namespace Strona.ViewModel
         NavItem<Image> obrazy;
         NavItem<Image> fotografia;
         NavItem<TextItem> teksty;
+        NavItem<Image> artysta;
        // List<string> tags;
 
         List<string> textTags;
@@ -24,10 +25,12 @@ namespace Strona.ViewModel
         Image obrazySelectedItem;
         TextItem tekstySelectedItem;
         Image fotografiaSelectedItem;
+        Image artystaSelectedItem;
 
         int obrazySelectedIndex; 
         int tekstySelectedIndex; 
         int fotografiaSelectedIndex; 
+        int artystaSelectedIndex; 
 
         public OpenFolderCommand OpenFolderCommand { get; set; }
         public SaveFileCommand SaveFileCommand { get; set; }
@@ -39,6 +42,7 @@ namespace Strona.ViewModel
             path = "";
             obrazy = new NavItem<Image>(ItemType.image);
             fotografia = new NavItem<Image>(ItemType.image);
+            artysta = new NavItem<Image>(ItemType.image);
             teksty = new NavItem<TextItem>(ItemType.text);
             OpenFolderCommand = new OpenFolderCommand(this);
             SaveFileCommand = new SaveFileCommand(this);
@@ -53,10 +57,12 @@ namespace Strona.ViewModel
             obrazySelectedItem = new Image();
             tekstySelectedItem = new TextItem();
             fotografiaSelectedItem = new Image();
+            artystaSelectedItem = new Image();
 
             obrazySelectedIndex = 0;
             tekstySelectedIndex = 0;
             fotografiaSelectedIndex = 0;
+            artystaSelectedIndex = 0;
 
         }
 
@@ -83,6 +89,10 @@ namespace Strona.ViewModel
             }
             return false;
         }
+
+        /// <summary>
+        /// Path to selected directory/File
+        /// </summary>
         public string Path
         {
             get { return path; }
@@ -99,6 +109,7 @@ namespace Strona.ViewModel
             }
         }
 
+        //Tags used in Teksty (unique)
         public List<string> TextTags
         {
             get { return textTags; }
@@ -111,6 +122,7 @@ namespace Strona.ViewModel
                 }
             }
         }
+
 
         public string SelectedTextTag
         {
@@ -166,6 +178,20 @@ namespace Strona.ViewModel
             }
         }
 
+        public NavItem<Image> Artysta
+        {
+            get { return artysta; }
+            set
+            {
+                if (artysta != value)
+                {
+                    artysta = value;
+                    ArtystaItems = artysta.Items;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
         public NavItem<TextItem> Teksty
         {
             get { return teksty; }
@@ -214,6 +240,25 @@ namespace Strona.ViewModel
                     fotografia.Items = value;
                     RaisePropertyChanged();
              //   }
+            }
+        }
+        public List<Image> ArtystaItems
+        {
+            get { return artysta.Items; }
+            set
+            {
+
+                artysta.Items = value;
+                    
+                for(int i = 0;  i<artysta.Items.Count; i++)
+                {
+                    artysta.Items[i].Caption = "";
+                    artysta.Items[i].Alt = "";
+                    artysta.Items[i].Size = "";
+                    artysta.Items[i].Material = "";
+                }
+                    
+                RaisePropertyChanged();
             }
         }
 
@@ -268,6 +313,19 @@ namespace Strona.ViewModel
                 }
             }
         }
+        
+        public Image ArtystaSelectedItem
+        {
+            get { return artystaSelectedItem; }
+            set
+            {
+                if (artystaSelectedItem != value)
+                {
+                    artystaSelectedItem = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
 
         public int ObrazySelectedIndex
         {
@@ -301,6 +359,19 @@ namespace Strona.ViewModel
                 if (fotografiaSelectedIndex != value)
                 {
                     fotografiaSelectedIndex = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+        
+        public int ArtystaSelectedIndex
+        {
+            get { return artystaSelectedIndex; }
+            set
+            {
+                if (artystaSelectedIndex != value)
+                {
+                    artystaSelectedIndex = value;
                     RaisePropertyChanged();
                 }
             }

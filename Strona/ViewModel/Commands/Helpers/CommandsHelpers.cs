@@ -48,7 +48,13 @@ namespace Strona.ViewModel.Commands.Helpers
         /// <param name="obrazy">NavItem - obrazy</param>
         /// <param name="fotografia">NavItem - fotografia</param>
         /// <param name="teksty">NavItem - teksty</param>
-        public static void GetItemsFromFile(string path, ref NavItem<Image> obrazy, ref NavItem<Image> fotografia, ref NavItem<TextItem> teksty)
+        public static void GetItemsFromFile(
+            string path,
+            ref NavItem<Image> obrazy,
+            ref NavItem<Image> fotografia,
+            ref NavItem<TextItem> teksty,
+            ref NavItem<Image> artysta
+            )
         {
             try
             {
@@ -58,6 +64,7 @@ namespace Strona.ViewModel.Commands.Helpers
                 obrazy = item.Obrazy;
                 fotografia = item.Fotografia;
                 teksty = item.Teksty;
+                artysta = item.Artysta;
             }
             catch(Exception e)
             {
@@ -106,6 +113,7 @@ namespace Strona.ViewModel.Commands.Helpers
         public const string OBRAZY_NAME = "Obrazy";
         public const string FOTOGRAFIE_NAME = "Fotografie";
         public const string TEKSTY_NAME = "Teksty";
+        public const string ARTYSTA_NAME = "Artysta";
 
 
 
@@ -116,12 +124,18 @@ namespace Strona.ViewModel.Commands.Helpers
         /// <param name="obrazy">NavItem - obrazy</param>
         /// <param name="fotografia">NavItem - fotografia</param>
         /// <param name="teksty">NavItem - teksty</param>
-        public static void GetItemsFromDirectory(string path, ref NavItem<Image> obrazy, ref NavItem<Image> fotografia, ref NavItem<TextItem> teksty)
+        public static void GetItemsFromDirectory(
+            string path, ref NavItem<Image> obrazy,
+            ref NavItem<Image> fotografia,
+            ref NavItem<TextItem> teksty,
+            ref NavItem<Image> artysta
+            )
         {
             DirectoryInfo info = new DirectoryInfo(path);
             bool obrazyExists = false;
             bool tekstyExists = false;
             bool fotografieExists = false;
+            bool artystaExists = false;
             foreach( DirectoryInfo dir in info.GetDirectories())
             {
                 if(dir.Name.Equals(OBRAZY_NAME) )
@@ -139,15 +153,21 @@ namespace Strona.ViewModel.Commands.Helpers
                     tekstyExists = true;
                     getNavItemFromDirectory<TextItem>(dir, ref teksty, ItemType.text);
                 }
+                else if (dir.Name.Equals(ARTYSTA_NAME))
+                {
+                    artystaExists = true;
+                    getNavItemFromDirectory<Image>(dir, ref artysta, ItemType.image);
+                }
             }
            
-            if (!obrazyExists || !fotografieExists || !tekstyExists)
+            if (!obrazyExists || !fotografieExists || !tekstyExists || !artystaExists)
             {
                 MessageBox.Show(
                     "Foldery: \n Obrazy - "
                     + getResultText(obrazyExists) +
                     "\n Fotografie - " + getResultText(fotografieExists) +
-                    "\n Teksty - " + getResultText(tekstyExists)
+                    "\n Teksty - " + getResultText(tekstyExists) + 
+                    "\n Artysta - " + getResultText(artystaExists) 
                     );
             }
         }
@@ -563,7 +583,7 @@ namespace Strona.ViewModel.Commands.Helpers
         /// 
         /// </summary>
         /// <param name="val"></param>
-        /// <returns></returns>
+        /// <returns>true - "istnieje", false - "nie istnieje"</returns>
         private static string getResultText( bool val )
         {
             if (val)
@@ -720,23 +740,28 @@ namespace Strona.ViewModel.Commands.Helpers
             ref NavItem<Image> dirFotografia,
             ref NavItem<Image> dirObrazy,
             ref NavItem<TextItem> dirTeksty,
+            ref NavItem<Image> dirArtysta,
             NavItem<Image> jsonFotografia,
             NavItem<Image> jsonObrazy,
-            NavItem<TextItem> jsonTeksty
+            NavItem<TextItem> jsonTeksty,
+            NavItem<Image> jsonArtysta
             )
         {
             List<String> redundanFotografia = new List<string>();
             List<String> redundanObrazy = new List<string>();
             List<String> redundanTeksty = new List<string>();
+            List<String> redundanArtysta = new List<string>();
             UpdateItems(ref dirFotografia, jsonFotografia, ref redundanFotografia);
             UpdateItems(ref dirTeksty, jsonTeksty, ref redundanTeksty );
             UpdateItems(ref dirObrazy, jsonObrazy, ref redundanObrazy );
+            UpdateItems(ref dirArtysta, jsonArtysta, ref redundanArtysta );
 
             string result = "";
 
             result = PrepareResult(redundanObrazy, result, "OBRAZY");
             result = PrepareResult(redundanFotografia, result, "FOTOGRAFIA");
             result = PrepareResult(redundanTeksty, result, "TEKSTY");
+            result = PrepareResult(redundanArtysta, result, "Artysta");
             
             if(!result.Equals(""))
             {

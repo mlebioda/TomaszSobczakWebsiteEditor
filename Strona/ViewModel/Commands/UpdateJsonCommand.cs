@@ -48,17 +48,20 @@ namespace Strona.ViewModel.Commands
             NavItem<Image> dirFotografia = new NavItem<Image>(ItemType.image);
             NavItem<Image> dirObrazy = new NavItem<Image>(ItemType.image);
             NavItem<TextItem> dirTeksty = new NavItem<TextItem>(ItemType.text);
+            NavItem<Image> dirArtysta = new NavItem<Image>(ItemType.image);
 
             NavItem<Image> jsonFotografia = new NavItem<Image>(ItemType.image);
             NavItem<Image> jsonObrazy = new NavItem<Image>(ItemType.image);
             NavItem<TextItem> jsonTeksty = new NavItem<TextItem>(ItemType.text);
+            NavItem<Image> jsonArtysta = new NavItem<Image>(ItemType.image);
+
 
             ///1. Sprawdzenie czy w pliku json są ścieżki do plików, których nie ma w folderze
-            
 
 
-            CommandsHelpers.GetItemsFromDirectory(dirPath, ref dirObrazy, ref dirFotografia, ref dirTeksty);
-            CommandsHelpers.GetItemsFromFile(jsonPath, ref jsonObrazy, ref jsonFotografia, ref jsonTeksty);
+
+            CommandsHelpers.GetItemsFromDirectory(dirPath, ref dirObrazy, ref dirFotografia, ref dirTeksty, ref dirArtysta);
+            CommandsHelpers.GetItemsFromFile(jsonPath, ref jsonObrazy, ref jsonFotografia, ref jsonTeksty, ref jsonArtysta );
 
 
 
@@ -66,15 +69,18 @@ namespace Strona.ViewModel.Commands
                 ref dirFotografia,
                 ref dirObrazy,
                 ref dirTeksty,
+                ref dirArtysta,
                 jsonFotografia,
                 jsonObrazy,
-                jsonTeksty
+                jsonTeksty,
+                jsonArtysta
                 );
 
 
             this.ViewModel.Teksty = dirTeksty;
             this.ViewModel.Fotografia = dirFotografia;
             this.ViewModel.Obrazy = dirObrazy;
+            this.ViewModel.Artysta = dirArtysta;
 
             this.ViewModel.TextTags = CommandsHelpers.getTextTags(dirTeksty);
             if (this.ViewModel.TextTags.Count < 0)
