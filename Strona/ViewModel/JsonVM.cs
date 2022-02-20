@@ -16,7 +16,8 @@ namespace Strona.ViewModel
         NavItem<Image> fotografia;
         NavItem<TextItem> teksty;
         NavItem<Image> artysta;
-       // List<string> tags;
+        List<EventItem> events;
+        // List<string> tags;
 
         List<string> textTags;
         string selectedTextTag;

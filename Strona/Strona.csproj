@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\EventItem.cs" />
     <Compile Include="Model\Image.cs" />
     <Compile Include="Model\Item.cs" />
     <Compile Include="Model\JsonItem.cs" />

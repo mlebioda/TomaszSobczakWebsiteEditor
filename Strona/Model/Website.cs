@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
+using Strona.Model;
 
 namespace Strona.Model
 {
@@ -15,12 +15,15 @@ namespace Strona.Model
         NavItem<Image> obrazy;
         NavItem<TextItem> teksty;
         NavItem<Image> fotografia;
+        List<EventItem> events;
+
 
         public Website()
         {
             obrazy = new NavItem<Image>(ItemType.image);
             teksty = new NavItem<TextItem>(ItemType.image);
             fotografia = new NavItem<Image>(ItemType.text);
+            events = new List<EventItem>();
         }
 
         public NavItem<Image> Obrazy
@@ -35,6 +38,21 @@ namespace Strona.Model
                 }
             }
         }
+
+
+        public List<EventItem> Events
+        {
+            get { return events; }
+            set
+            {
+                if (events != value)
+                {
+                    events = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
         public NavItem<TextItem> Teksty
         {
             get { return teksty; }
