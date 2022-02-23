@@ -53,7 +53,8 @@ namespace Strona.ViewModel.Commands.Helpers
             ref NavItem<Image> obrazy,
             ref NavItem<Image> fotografia,
             ref NavItem<TextItem> teksty,
-            ref NavItem<Image> artysta
+            ref NavItem<Image> artysta,
+            ref List<EventItem> eventItem
             )
         {
             try
@@ -65,6 +66,7 @@ namespace Strona.ViewModel.Commands.Helpers
                 fotografia = item.Fotografia;
                 teksty = item.Teksty;
                 artysta = item.Artysta;
+                eventItem = item.Events;
             }
             catch(Exception e)
             {

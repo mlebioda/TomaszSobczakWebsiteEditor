@@ -41,14 +41,16 @@ namespace Strona.ViewModel.Commands
             NavItem<Image> obrazy = new NavItem<Image>(ItemType.image);
             NavItem<TextItem> teksty = new NavItem<TextItem>(ItemType.text);
             NavItem<Image> artysta = new NavItem<Image>(ItemType.image);
+            List<EventItem> eventItem = new List<EventItem>();
 
 
-            CommandsHelpers.GetItemsFromFile(this.ViewModel.Path, ref obrazy, ref fotografia, ref teksty, ref artysta);
+            CommandsHelpers.GetItemsFromFile(this.ViewModel.Path, ref obrazy, ref fotografia, ref teksty, ref artysta, ref eventItem);
 
             this.ViewModel.Teksty = teksty;
             this.ViewModel.Fotografia = fotografia;
             this.ViewModel.Obrazy = obrazy;
             this.ViewModel.Artysta = artysta;
+            this.ViewModel.Events = eventItem;
 
             this.ViewModel.TextTags = CommandsHelpers.getTextTags(teksty);
             if (this.ViewModel.TextTags.Count < 0)

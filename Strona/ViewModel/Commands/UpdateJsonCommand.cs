@@ -54,6 +54,7 @@ namespace Strona.ViewModel.Commands
             NavItem<Image> jsonObrazy = new NavItem<Image>(ItemType.image);
             NavItem<TextItem> jsonTeksty = new NavItem<TextItem>(ItemType.text);
             NavItem<Image> jsonArtysta = new NavItem<Image>(ItemType.image);
+            List<EventItem> jsonEvents = new List<EventItem>();
 
 
             ///1. Sprawdzenie czy w pliku json są ścieżki do plików, których nie ma w folderze
@@ -61,7 +62,7 @@ namespace Strona.ViewModel.Commands
 
 
             CommandsHelpers.GetItemsFromDirectory(dirPath, ref dirObrazy, ref dirFotografia, ref dirTeksty, ref dirArtysta);
-            CommandsHelpers.GetItemsFromFile(jsonPath, ref jsonObrazy, ref jsonFotografia, ref jsonTeksty, ref jsonArtysta );
+            CommandsHelpers.GetItemsFromFile(jsonPath, ref jsonObrazy, ref jsonFotografia, ref jsonTeksty, ref jsonArtysta, ref jsonEvents );
 
 
 

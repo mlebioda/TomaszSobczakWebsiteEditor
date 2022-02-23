@@ -122,6 +122,29 @@
 
                 </Grid>
             </TabItem>
+            <TabItem Header="Kalendarium" Height="22" VerticalAlignment="Bottom">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="54*"/>
+                        <ColumnDefinition Width="52*"/>
+                        <ColumnDefinition Width="497*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Margin="315,0,0,0" Grid.Column="2" 
+                              ItemsSource="{Binding Events}" SelectedIndex="{Binding EventSelectedIndex}"
+                              SelectedItem="{Binding EventSelectedItem}" AutoGenerateColumns="True" IsReadOnly="True"
+                              
+                              />
+                    <Label Content="Data" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" Height="26" Width="36"/>
+                    <Label Content="Nazwa" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,36,0,0" Height="26" Width="49" RenderTransformOrigin="0.618,-3.948"/>
+                    <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding EventSelectedItem.Date}" IsEnabled="True" VerticalAlignment="Top" Width="414" Grid.Column="1" Margin="0,10,0,0" Grid.ColumnSpan="2"/>
+
+                    <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding EventSelectedItem.Name}" IsEnabled="True" VerticalAlignment="Top" Width="414" Grid.Column="1" Margin="0,39,0,0" Grid.ColumnSpan="2"/>
+                    <Button Content="Dodaj" Grid.Column="2" HorizontalAlignment="Left" Margin="235,64,0,0" VerticalAlignment="Top" Width="75" Command="{Binding AddEventCommand}"/>
+                    <Button Content="Usuń" Grid.Column="2" HorizontalAlignment="Left" Margin="235,89,0,0" VerticalAlignment="Top" Width="75" Command="{Binding RemoveEventCommand}"/>
+
+
+                </Grid>
+            </TabItem>
         </TabControl>
         <Label Content="Wybrana ścieżka" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,18,0,0"/>
         <Label Content="{Binding Path}" VerticalAlignment="Top" Margin="140,18,26,0"/>

@@ -10,7 +10,7 @@ using System.IO;
 
 namespace Strona.ViewModel.Commands
 {
-    public class SaveFileCommand : ICommand
+    public class RemoveEventCommand : ICommand
     {
         public JsonVM ViewModel { get; set; }
         public event EventHandler CanExecuteChanged
@@ -19,17 +19,9 @@ namespace Strona.ViewModel.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        /// <summary>
-        /// Polecenie dostępne gdy w każdym z typów obiektów są  itemy
-        /// </summary>
-        /// <param name="parameter"></param>
-        /// <returns></returns>
         public bool CanExecute(object parameter)
         {
-            if(
-                ViewModel.Fotografia.isValid()
-                && ViewModel.Obrazy.isValid()
-                && ViewModel.Teksty.isValid())
+            if (ViewModel.Events.Count > 0)
             {
                 return true;
             }
@@ -38,13 +30,13 @@ namespace Strona.ViewModel.Commands
 
         public void Execute(object parameter)
         {
-            JsonItem jsonItem = new JsonItem(ViewModel.Obrazy, ViewModel.Fotografia, ViewModel.Teksty, ViewModel.Artysta, ViewModel.Events);
-            CommandsHelpers.SaveJson(jsonItem);
-            
+            ViewModel.Events.RemoveAt(ViewModel.EventSelectedIndex);
 
         }
 
-        public SaveFileCommand( JsonVM viewModel )
+
+
+        public RemoveEventCommand(JsonVM viewModel)
         {
             this.ViewModel = viewModel;
         }

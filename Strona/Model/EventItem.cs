@@ -18,6 +18,11 @@ namespace Strona.Model
             m_date = date;
             m_name = name;
         }
+        public EventItem()
+        {
+            m_date = "";
+            m_name = "";
+        }
 
 
         public string Date

@@ -27,17 +27,21 @@ namespace Strona.ViewModel
         TextItem tekstySelectedItem;
         Image fotografiaSelectedItem;
         Image artystaSelectedItem;
+        EventItem eventSelectedItem;
 
         int obrazySelectedIndex; 
         int tekstySelectedIndex; 
         int fotografiaSelectedIndex; 
         int artystaSelectedIndex; 
+        int eventSelectedIndex;
 
         public OpenFolderCommand OpenFolderCommand { get; set; }
         public SaveFileCommand SaveFileCommand { get; set; }
         public OpenJsonCommand OpenJsonCommand { get; set; }
         public ReplaceAdjustCommand ReplaceAdjustCommand { get; set; }
         public UpdateJsonCommand UpdateJsonCommand { get; set; }
+        public AddEventCommand AddEventCommand { get; set; }
+        public RemoveEventCommand RemoveEventCommand { get; set; }
         public JsonVM()
         {
             path = "";
@@ -45,11 +49,15 @@ namespace Strona.ViewModel
             fotografia = new NavItem<Image>(ItemType.image);
             artysta = new NavItem<Image>(ItemType.image);
             teksty = new NavItem<TextItem>(ItemType.text);
+            events = new List<EventItem>();
+
             OpenFolderCommand = new OpenFolderCommand(this);
             SaveFileCommand = new SaveFileCommand(this);
             OpenJsonCommand = new OpenJsonCommand(this);
             ReplaceAdjustCommand = new ReplaceAdjustCommand(this);
             UpdateJsonCommand = new UpdateJsonCommand(this);
+            AddEventCommand = new AddEventCommand(this);
+            RemoveEventCommand = new RemoveEventCommand(this);
            // tags = new List<string>();
             textTags = new List<string>();
             selectedAdjust = (int)TextAdjust.left;
@@ -59,11 +67,13 @@ namespace Strona.ViewModel
             tekstySelectedItem = new TextItem();
             fotografiaSelectedItem = new Image();
             artystaSelectedItem = new Image();
+            eventSelectedItem = new EventItem();
 
             obrazySelectedIndex = 0;
             tekstySelectedIndex = 0;
             fotografiaSelectedIndex = 0;
             artystaSelectedIndex = 0;
+            eventSelectedIndex = 0;
 
         }
 
@@ -207,6 +217,16 @@ namespace Strona.ViewModel
             }
         }
 
+        public List<EventItem> Events
+        {
+            get { return events;}
+            set
+            {
+                events = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public List<TextItem> TekstyItems
         {
             get { return teksty.Items; }
@@ -271,6 +291,19 @@ namespace Strona.ViewModel
                 if (tekstySelectedItem != value)
                 {
                     tekstySelectedItem = value;
+                    RaisePropertyChanged();
+                }
+            }
+        } 
+
+        public EventItem EventSelectedItem
+        {
+            get { return eventSelectedItem; }
+            set
+            {
+                if (eventSelectedItem != value)
+                {
+                    eventSelectedItem = value;
                     RaisePropertyChanged();
                 }
             }
@@ -378,6 +411,18 @@ namespace Strona.ViewModel
             }
         }
 
+        public int EventSelectedIndex
+        {
+            get { return eventSelectedIndex; }
+            set
+            {
+                if (eventSelectedIndex != value)
+                {
+                    eventSelectedIndex = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged([CallerMemberName] string property = "")
