@@ -19,10 +19,14 @@ namespace Strona.Model
     {
         
         TextAdjust adjutst;
+        String subCaption1;
+        String subCaption2;
 
         public TextItem()
         {
             adjutst = TextAdjust.left;
+            subCaption1 = "";
+            subCaption2 = "";
             
         }
         
@@ -41,6 +45,33 @@ namespace Strona.Model
                 
             }
         }
+
+        public string SubCaption1
+        {
+            get { return subCaption1; }
+            set
+            {
+                if (subCaption1 != value)
+                {
+                    subCaption1 = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        public string SubCaption2
+        {
+            get { return subCaption2; }
+            set
+            {
+                if (subCaption2 != value)
+                {
+                    subCaption2 = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
 
         [JsonIgnore]
         public int AdjustI

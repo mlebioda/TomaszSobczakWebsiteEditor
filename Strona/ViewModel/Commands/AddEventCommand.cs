@@ -21,7 +21,8 @@ namespace Strona.ViewModel.Commands
 
         public bool CanExecute(object parameter)
         {
-            if (ViewModel.EventSelectedItem.Name != "" && ViewModel.EventSelectedItem.Date != "")
+            if ( ViewModel.EventSelectedItem != null &&
+                ViewModel.EventSelectedItem.Name != "" && ViewModel.EventSelectedItem.Date != "")
             {
                 return true;
             }
