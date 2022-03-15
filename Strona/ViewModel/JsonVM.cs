@@ -323,6 +323,20 @@ namespace Strona.ViewModel
             set { }
         }
 
+        public List<string> FontSizeList
+        {
+            get
+            {
+                List<string> list = new List<string>();
+                list.Add("Średni");
+                list.Add("Duży");
+                list.Add("Największy");
+                return list;
+
+            }
+            set { }
+        }
+
         public Image ObrazySelectedItem
         {
             get { return obrazySelectedItem; }

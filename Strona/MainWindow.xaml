@@ -79,8 +79,20 @@
                     </Grid.ColumnDefinitions>
                     <DataGrid Margin="419,0,0,0" Grid.Column="1"
                               ItemsSource="{Binding TekstyItems}" SelectedIndex="{Binding TekstySelectedIndex}"
-                              SelectedItem="{Binding TekstySelectedItem}" AutoGenerateColumns="True" IsReadOnly="True"
-                              />
+                              SelectedItem="{Binding TekstySelectedItem}" AutoGenerateColumns="False" IsReadOnly="True"
+                              >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Tytuł" Binding="{Binding Caption}"/>
+                            <DataGridTextColumn Header="PodTytuł 1" Binding="{Binding SubCaption1}"/>
+                            <DataGridTextColumn Header="PodTytuł 2" Binding="{Binding SubCaption2}"/>
+                            <DataGridTextColumn Header="PodTytuł 2" Binding="{Binding Tag}"/>
+                            <DataGridTextColumn Header="Wyrównanie" Binding="{Binding AdjustI}"/>
+                            <DataGridTextColumn Header="Ścieżka" Binding="{Binding Src}"/>
+                            <DataGridTextColumn Header="Rozmiar czcionki 1" Binding="{Binding CaptionFontSizeI}"/>
+                            <DataGridTextColumn Header="Rozmiar czcionki 2" Binding="{Binding SubCaption1FontSizeI}"/>
+                            <DataGridTextColumn Header="Rozmiar czcionki 3" Binding="{Binding SubCaption2FontSizeI}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                     <Label Content="Tytuł" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" Height="26" Width="36"/>
                     <Label Content="Ścieżka" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,157,0,0" Height="26" Width="49"/>
                     <Label Content="Wyrównanie" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,126,0,0" Width="108" Height="26" Grid.ColumnSpan="2"/>
@@ -96,6 +108,13 @@
                     <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding TekstySelectedItem.SubCaption1}" VerticalAlignment="Top" Width="414" Grid.Column="1" Margin="0,38,0,0"/>
                     <Label Content="Podtytuł 2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,65,0,0" Height="26" Width="67"/>
                     <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding TekstySelectedItem.SubCaption2}" VerticalAlignment="Top" Width="414" Grid.Column="1" Margin="0,65,0,0"/>
+                    <Label Content="Podtytuł 1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,354,0,0" Height="26" Width="67"/>
+                    <Label Content="Podtytuł 2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,381,0,0" Height="26" Width="67"/>
+                    <Label Content="Tytuł" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="11,329,0,0" Height="26" Width="58"/>
+                    <Label Content="Rozmiar czcionki:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,299,0,0" Height="26" Width="118" Grid.ColumnSpan="2"/>
+                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top"  SelectedIndex="{Binding TekstySelectedItem.CaptionFontSizeI, Mode=TwoWay}" ItemsSource="{Binding FontSizeList}"   Width="120" Grid.Column="1" Margin="0,329,0,0"/>
+                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top"  SelectedIndex="{Binding TekstySelectedItem.SubCaption1FontSizeI, Mode=TwoWay}" ItemsSource="{Binding FontSizeList}"   Width="120" Grid.Column="1" Margin="0,356,0,0"/>
+                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top"  SelectedIndex="{Binding TekstySelectedItem.SubCaption2FontSizeI, Mode=TwoWay}" ItemsSource="{Binding FontSizeList}"   Width="120" Grid.Column="1" Margin="0,383,0,0"/>
 
                 </Grid>
             </TabItem>
