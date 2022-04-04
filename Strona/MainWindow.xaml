@@ -162,6 +162,7 @@
                     <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding EventSelectedItem.Name}" IsEnabled="True" VerticalAlignment="Top" Width="414" Grid.Column="1" Margin="0,39,0,0"/>
                     <Button Content="Dodaj" Grid.Column="1" HorizontalAlignment="Left" Margin="339,64,0,0" VerticalAlignment="Top" Width="75" Command="{Binding AddEventCommand}"/>
                     <Button Content="Usuń" Grid.Column="1" HorizontalAlignment="Left" Margin="339,89,0,0" VerticalAlignment="Top" Width="75" Command="{Binding RemoveEventCommand}"/>
+                    <Button Content="Odznacz" Grid.Column="1" HorizontalAlignment="Left" Margin="0,69,0,0" VerticalAlignment="Top" Width="75" Command="{Binding UnselectCommand}" RenderTransformOrigin="-1.427,0.3"/>
 
 
                 </Grid>

@@ -66,6 +66,7 @@
     <Compile Include="Model\NavItem.cs" />
     <Compile Include="Model\TextItem.cs" />
     <Compile Include="Model\Website.cs" />
+    <Compile Include="ViewModel\Commands\UnselectCommand.cs" />
     <Compile Include="ViewModel\Commands\AddEventCommand.cs" />
     <Compile Include="ViewModel\Commands\Helpers\CommandsHelpers.cs" />
     <Compile Include="ViewModel\Commands\RemoveEventCommand.cs" />

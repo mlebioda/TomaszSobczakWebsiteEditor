@@ -7,6 +7,12 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Strona.ViewModel.Commands;
 using Strona.Model;
+using System.Windows.Threading;
+using System.Windows;
+using Strona.ViewModel.Commands.Helpers;
+using System.IO;
+using System.Collections.ObjectModel;
+
 namespace Strona.ViewModel
 {
     public class JsonVM : INotifyPropertyChanged
@@ -16,9 +22,9 @@ namespace Strona.ViewModel
         NavItem<Image> fotografia;
         NavItem<TextItem> teksty;
         NavItem<Image> artysta;
-        List<EventItem> events;
+        ObservableCollection<EventItem> events;
         // List<string> tags;
-
+        DispatcherTimer autosaveTimer;
         List<string> textTags;
         string selectedTextTag;
         int selectedAdjust;
@@ -42,6 +48,7 @@ namespace Strona.ViewModel
         public UpdateJsonCommand UpdateJsonCommand { get; set; }
         public AddEventCommand AddEventCommand { get; set; }
         public RemoveEventCommand RemoveEventCommand { get; set; }
+        public UnselectCommand UnselectCommand { get; set; }
         public JsonVM()
         {
             path = "";
@@ -49,7 +56,7 @@ namespace Strona.ViewModel
             fotografia = new NavItem<Image>(ItemType.image);
             artysta = new NavItem<Image>(ItemType.image);
             teksty = new NavItem<TextItem>(ItemType.text);
-            events = new List<EventItem>();
+            events = new ObservableCollection<EventItem>();
 
             OpenFolderCommand = new OpenFolderCommand(this);
             SaveFileCommand = new SaveFileCommand(this);
@@ -58,6 +65,7 @@ namespace Strona.ViewModel
             UpdateJsonCommand = new UpdateJsonCommand(this);
             AddEventCommand = new AddEventCommand(this);
             RemoveEventCommand = new RemoveEventCommand(this);
+            UnselectCommand = new UnselectCommand(this);
            // tags = new List<string>();
             textTags = new List<string>();
             selectedAdjust = (int)TextAdjust.left;
@@ -74,7 +82,22 @@ namespace Strona.ViewModel
             fotografiaSelectedIndex = 0;
             artystaSelectedIndex = 0;
             eventSelectedIndex = 0;
+            autosaveTimer = new DispatcherTimer(
+                TimeSpan.FromSeconds(900), 
+                DispatcherPriority.Background, new EventHandler(DoAutoSave), 
+                Application.Current.Dispatcher);
 
+
+        }
+        void DoAutoSave(object sender, EventArgs e)
+        {
+            if(isValid(false))
+            {
+
+                    JsonItem jsonItem = new JsonItem(Obrazy, Fotografia, Teksty, Artysta, Events);
+                    CommandsHelpers.SaveJson(jsonItem);
+                
+            }
         }
 
         /// <summary>
@@ -217,7 +240,7 @@ namespace Strona.ViewModel
             }
         }
 
-        public List<EventItem> Events
+        public ObservableCollection<EventItem> Events
         {
             get { return events;}
             set
@@ -227,7 +250,7 @@ namespace Strona.ViewModel
             }
         }
 
-        public List<TextItem> TekstyItems
+        public ObservableCollection<TextItem> TekstyItems
         {
             get { return teksty.Items; }
             set
@@ -239,7 +262,7 @@ namespace Strona.ViewModel
                // }
             }
         }
-        public List<Image> ObrazyItems
+        public ObservableCollection<Image> ObrazyItems
         {
             get { return obrazy.Items; }
             set
@@ -251,7 +274,7 @@ namespace Strona.ViewModel
               //  }
             }
         }
-        public List<Image> FotografiaItems
+        public ObservableCollection<Image> FotografiaItems
         {
             get { return fotografia.Items; }
             set
@@ -263,7 +286,7 @@ namespace Strona.ViewModel
              //   }
             }
         }
-        public List<Image> ArtystaItems
+        public ObservableCollection<Image> ArtystaItems
         {
             get { return artysta.Items; }
             set

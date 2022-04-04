@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
+using System.Collections.ObjectModel;
 
 namespace Strona.Model
 {
@@ -13,15 +13,15 @@ namespace Strona.Model
     public class NavItem<T> : INotifyPropertyChanged
     {
         // FiltersItem filters;
-        List<Filter> filters;
-        List<T> items;
+        ObservableCollection<Filter> filters;
+        ObservableCollection<T> items;
         ItemType type;
 
         public NavItem(ItemType t)
         {
             //filters = new FiltersItem();
-            filters = new List<Filter>();
-            items = new List<T>();
+            filters = new ObservableCollection<Filter>();
+            items = new ObservableCollection<T>();
             type = t;
         }
 
@@ -52,7 +52,7 @@ namespace Strona.Model
                 return false;
         }
 
-        public List<Filter> Filters
+        public ObservableCollection<Filter> Filters
         {
             get { return filters; }
             set
@@ -65,7 +65,7 @@ namespace Strona.Model
             }
         }
 
-        public List<T> Items
+        public ObservableCollection<T> Items
         {
             get { return items; }
             set

@@ -30,8 +30,14 @@ namespace Strona.ViewModel.Commands
 
         public void Execute(object parameter)
         {
-            ViewModel.Events.RemoveAt(ViewModel.EventSelectedIndex);
 
+            if (ViewModel.Events.Count > ViewModel.EventSelectedIndex && ViewModel.EventSelectedIndex >= 0)
+            {
+                ViewModel.Events.RemoveAt(ViewModel.EventSelectedIndex);
+                 ViewModel.EventSelectedIndex = -1;
+                ViewModel.EventSelectedItem = new EventItem("", "");
+
+            }
         }
 
 

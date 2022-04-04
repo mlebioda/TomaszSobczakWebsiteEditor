@@ -7,6 +7,7 @@ using System.Windows.Input;
 using Strona.Model;
 using Strona.ViewModel.Commands.Helpers;
 using System.IO;
+using System.Collections.ObjectModel;
 
 namespace Strona.ViewModel.Commands
 {
@@ -41,7 +42,7 @@ namespace Strona.ViewModel.Commands
             NavItem<Image> obrazy = new NavItem<Image>(ItemType.image);
             NavItem<TextItem> teksty = new NavItem<TextItem>(ItemType.text);
             NavItem<Image> artysta = new NavItem<Image>(ItemType.image);
-            List<EventItem> eventItem = new List<EventItem>();
+            ObservableCollection<EventItem> eventItem = new ObservableCollection<EventItem>();
 
 
             CommandsHelpers.GetItemsFromFile(this.ViewModel.Path, ref obrazy, ref fotografia, ref teksty, ref artysta, ref eventItem);

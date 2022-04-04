@@ -8,6 +8,8 @@ using System.IO;
 using Strona.Model;
 using Newtonsoft.Json;
 using Strona.View;
+using System.Collections.ObjectModel;
+
 namespace Strona.ViewModel.Commands.Helpers
 {
     public static class CommandsHelpers
@@ -54,7 +56,7 @@ namespace Strona.ViewModel.Commands.Helpers
             ref NavItem<Image> fotografia,
             ref NavItem<TextItem> teksty,
             ref NavItem<Image> artysta,
-            ref List<EventItem> eventItem
+            ref ObservableCollection<EventItem> eventItem
             )
         {
             try
@@ -205,7 +207,7 @@ namespace Strona.ViewModel.Commands.Helpers
 
             if(mainDir.GetDirectories().Length > 0) // są w obrazy podfoldery więc trzeba olać pliki
             {
-                List<Filter> item = new List<Filter>(); //Dodawanie filtra
+                ObservableCollection<Filter> item = new ObservableCollection<Filter>(); //Dodawanie filtra
                 
 
                 foreach(DirectoryInfo dir in mainDir.GetDirectories()) //podfoldery w np obrazy
@@ -624,10 +626,31 @@ namespace Strona.ViewModel.Commands.Helpers
             {
                 MessageBox.Show(e.Message);
             }
-
-
-
         }
+
+        public static void SaveJson(JsonItem item, string path)
+        {
+            try
+            {
+                    JsonSerializer serializer = new JsonSerializer();
+                    //serializer.Converters.Add(new JavaScriptDateTimeConverter());
+                    serializer.NullValueHandling = NullValueHandling.Ignore;
+
+                    using (StreamWriter sw = new StreamWriter(path))
+                    using (JsonWriter writer = new JsonTextWriter(sw))
+                    {
+                        serializer.Serialize(writer, item);
+                        // {"ExpiryDate":new Date(1230375600000),"Price":0}
+                    }
+                    MessageBox.Show("Gotowe");
+ 
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
 
         #endregion
         #region Gui

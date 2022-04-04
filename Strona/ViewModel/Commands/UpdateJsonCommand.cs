@@ -7,6 +7,7 @@ using System.Windows.Input;
 using Strona.Model;
 using Strona.ViewModel.Commands.Helpers;
 using System.IO;
+using System.Collections.ObjectModel;
 
 namespace Strona.ViewModel.Commands
 {
@@ -54,7 +55,7 @@ namespace Strona.ViewModel.Commands
             NavItem<Image> jsonObrazy = new NavItem<Image>(ItemType.image);
             NavItem<TextItem> jsonTeksty = new NavItem<TextItem>(ItemType.text);
             NavItem<Image> jsonArtysta = new NavItem<Image>(ItemType.image);
-            List<EventItem> jsonEvents = new List<EventItem>();
+            ObservableCollection<EventItem> jsonEvents = new ObservableCollection<EventItem>();
 
 
             ///1. Sprawdzenie czy w pliku json są ścieżki do plików, których nie ma w folderze
@@ -82,6 +83,7 @@ namespace Strona.ViewModel.Commands
             this.ViewModel.Fotografia = dirFotografia;
             this.ViewModel.Obrazy = dirObrazy;
             this.ViewModel.Artysta = dirArtysta;
+            this.ViewModel.Events = jsonEvents;
 
             this.ViewModel.TextTags = CommandsHelpers.getTextTags(dirTeksty);
             if (this.ViewModel.TextTags.Count < 0)

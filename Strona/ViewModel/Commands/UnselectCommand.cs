@@ -10,7 +10,7 @@ using System.IO;
 
 namespace Strona.ViewModel.Commands
 {
-    public class AddEventCommand : ICommand
+    public class UnselectCommand : ICommand
     {
         public JsonVM ViewModel { get; set; }
         public event EventHandler CanExecuteChanged
@@ -36,20 +36,14 @@ namespace Strona.ViewModel.Commands
 
         public void Execute(object parameter)
         {
-            ViewModel.Events.Add(new EventItem(
-                 ViewModel.EventSelectedItem.Date,
-                ViewModel.EventSelectedItem.Name
-               
-                ));
-
             ViewModel.EventSelectedIndex = -1;
-            ViewModel.EventSelectedItem = new EventItem("", "");
+            ViewModel.EventSelectedItem = new EventItem("","");
 
         }
 
 
 
-        public AddEventCommand(JsonVM viewModel)
+        public UnselectCommand(JsonVM viewModel)
         {
             this.ViewModel = viewModel;
         }

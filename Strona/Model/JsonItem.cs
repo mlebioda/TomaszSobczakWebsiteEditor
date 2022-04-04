@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,14 +13,14 @@ namespace Strona.Model
         NavItem<Image> fotografia;
         NavItem<TextItem> teksty;
         NavItem<Image> artysta;
-        List<EventItem> events;
+        ObservableCollection<EventItem> events;
 
         public JsonItem(
             NavItem<Image> o,
             NavItem<Image> f,
             NavItem<TextItem> t,
             NavItem<Image> a,
-            List<EventItem> e
+            ObservableCollection<EventItem> e
             )
         {
             obrazy = o;
@@ -77,7 +78,7 @@ namespace Strona.Model
             }
         }
         
-        public List<EventItem> Events
+        public ObservableCollection<EventItem> Events
         {
             get { return events; }
             set
