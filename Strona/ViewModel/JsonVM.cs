@@ -27,7 +27,7 @@ namespace Strona.ViewModel
         DispatcherTimer autosaveTimer;
         List<string> textTags;
         string selectedTextTag;
-        int selectedAdjust;
+        int selectedContentAdjust;
 
         Image obrazySelectedItem;
         TextItem tekstySelectedItem;
@@ -68,7 +68,7 @@ namespace Strona.ViewModel
             UnselectCommand = new UnselectCommand(this);
            // tags = new List<string>();
             textTags = new List<string>();
-            selectedAdjust = (int)TextAdjust.left;
+            selectedContentAdjust = (int)TextAdjust.left;
             selectedTextTag = "";
 
             obrazySelectedItem = new Image();
@@ -171,14 +171,14 @@ namespace Strona.ViewModel
             }
         }
 
-        public int SelectedAdjust
+        public int SelectedContentAdjust
         {
-            get { return selectedAdjust; }
+            get { return selectedContentAdjust; }
             set
             {
-                if (selectedAdjust != value)
+                if (selectedContentAdjust != value)
                 {
-                    selectedAdjust = value;
+                    selectedContentAdjust = value;
                     RaisePropertyChanged();
                 }
             }

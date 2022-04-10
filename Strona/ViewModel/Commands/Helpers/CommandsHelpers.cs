@@ -476,7 +476,7 @@ namespace Strona.ViewModel.Commands.Helpers
             txt.Caption = prepareCaption(Path.GetFileNameWithoutExtension(file.Name));
             txt.Tag = filterTag;
             txt.Src = getPath(file.FullName); //asets/img/MaindirName + path
-            txt.Adjust = TextAdjust.left;
+            txt.ContentAdjust = TextAdjust.left;
 
             return txt;
         }
@@ -734,8 +734,8 @@ namespace Strona.ViewModel.Commands.Helpers
                 {
                     if (dirNav.Items[j].Src.Equals(jsonNav.Items[i].Src))
                     {
-                        dirNav.Items[j].Adjust = jsonNav.Items[i].Adjust;
-                        dirNav.Items[j].AdjustI = jsonNav.Items[i].AdjustI;
+                        dirNav.Items[j].ContentAdjust = jsonNav.Items[i].ContentAdjust;
+                        dirNav.Items[j].ContentAdjustI = jsonNav.Items[i].ContentAdjustI;
                         dirNav.Items[j].Caption = jsonNav.Items[i].Caption;
                         break;
                     }

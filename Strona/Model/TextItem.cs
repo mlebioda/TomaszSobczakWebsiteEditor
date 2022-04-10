@@ -26,7 +26,8 @@ namespace Strona.Model
     public class TextItem : Item
     {
         
-        TextAdjust adjutst;
+        TextAdjust contentAdjutst;
+        TextAdjust titlesAdjutst;
         String subCaption1;
         String subCaption2;
         FontSize captionFontSize;
@@ -36,7 +37,8 @@ namespace Strona.Model
 
         public TextItem()
         {
-            adjutst = TextAdjust.left;
+            contentAdjutst = TextAdjust.left;
+            titlesAdjutst = TextAdjust.left;
             subCaption1 = "";
             subCaption2 = "";
             captionFontSize = FontSize.xlLarge;
@@ -87,14 +89,28 @@ namespace Strona.Model
             }
         }
 
-        public TextAdjust Adjust
+        public TextAdjust ContentAdjust
         {
-            get { return adjutst; }
+            get { return contentAdjutst; }
             set
             {
-                if (adjutst != value)
+                if (contentAdjutst != value)
                 {
-                    adjutst = value;
+                    contentAdjutst = value;
+                    RaisePropertyChanged();
+                }
+                
+            }
+        }
+        
+        public TextAdjust TitlesAdjust
+        {
+            get { return titlesAdjutst; }
+            set
+            {
+                if (titlesAdjutst != value)
+                {
+                    titlesAdjutst = value;
                     RaisePropertyChanged();
                 }
                 
@@ -129,23 +145,48 @@ namespace Strona.Model
 
 
         [JsonIgnore]
-        public int AdjustI
+        public int ContentAdjustI
         {
-            get { return (int)adjutst; }
+            get { return (int)contentAdjutst; }
             set
             {
-                if((int)adjutst!=value)
+                if((int)contentAdjutst != value)
                 {
                     switch(value)
                     {
                         case 0:
-                            adjutst = TextAdjust.left;
+                            contentAdjutst = TextAdjust.left;
                             break;
                         case 1:
-                            adjutst = TextAdjust.center;
+                            contentAdjutst = TextAdjust.center;
                             break;
                         default:
-                            adjutst = TextAdjust.right;
+                            contentAdjutst = TextAdjust.right;
+                            break;
+                    }
+                    RaisePropertyChanged();
+                }
+            }
+        }
+        
+        [JsonIgnore]
+        public int TitlesAdjustI
+        {
+            get { return (int)titlesAdjutst; }
+            set
+            {
+                if((int)titlesAdjutst != value)
+                {
+                    switch(value)
+                    {
+                        case 0:
+                            titlesAdjutst = TextAdjust.left;
+                            break;
+                        case 1:
+                            titlesAdjutst = TextAdjust.center;
+                            break;
+                        default:
+                            titlesAdjutst = TextAdjust.right;
                             break;
                     }
                     RaisePropertyChanged();

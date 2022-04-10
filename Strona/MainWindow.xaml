@@ -86,7 +86,8 @@
                             <DataGridTextColumn Header="PodTytuł 1" Binding="{Binding SubCaption1}"/>
                             <DataGridTextColumn Header="PodTytuł 2" Binding="{Binding SubCaption2}"/>
                             <DataGridTextColumn Header="PodTytuł 2" Binding="{Binding Tag}"/>
-                            <DataGridTextColumn Header="Wyrównanie" Binding="{Binding AdjustI}"/>
+                            <DataGridTextColumn Header="Wyrównanie zawartości" Binding="{Binding ContentAdjustI}"/>
+                            <DataGridTextColumn Header="Wyrównanie tytułów" Binding="{Binding TitlesAdjustI}"/>
                             <DataGridTextColumn Header="Ścieżka" Binding="{Binding Src}"/>
                             <DataGridTextColumn Header="Rozmiar czcionki 1" Binding="{Binding CaptionFontSizeI}"/>
                             <DataGridTextColumn Header="Rozmiar czcionki 2" Binding="{Binding SubCaption1FontSizeI}"/>
@@ -100,8 +101,8 @@
                     <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding TekstySelectedItem.Caption}" VerticalAlignment="Top" Width="414" Grid.Column="1" Margin="0,10,0,0"/>
                     <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding TekstySelectedItem.Tag}" IsReadOnly="True"  IsEnabled="False" VerticalAlignment="Top" Width="414" Margin="0,101,0,0" Grid.Column="1"/>
                     <TextBox HorizontalAlignment="Left" Height="38" TextWrapping="Wrap" Text="{Binding TekstySelectedItem.Src}" IsReadOnly="True" IsEnabled="False" VerticalAlignment="Top" Width="414" Grid.Column="1" Margin="0,160,0,0"/>
-                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top"  SelectedIndex="{Binding TekstySelectedItem.AdjustI, Mode=TwoWay}" ItemsSource="{Binding AdjustList}"   Width="120" Grid.Column="1" Margin="0,129,0,0"/>
-                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" SelectedIndex="{Binding SelectedAdjust}" ItemsSource="{Binding AdjustList}"   Width="120" Grid.Column="1" Margin="135,231,0,0"/>
+                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top"  SelectedIndex="{Binding TekstySelectedItem.ContentAdjustI, Mode=TwoWay}" ItemsSource="{Binding AdjustList}"   Width="120" Grid.Column="1" Margin="0,129,0,0"/>
+                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" SelectedIndex="{Binding SelectedContentAdjust}" ItemsSource="{Binding AdjustList}"   Width="120" Grid.Column="1" Margin="135,231,0,0"/>
                     <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top"   SelectedItem="{Binding SelectedTextTag}" ItemsSource="{Binding TextTags}"   Width="120" Grid.Column="1" Margin="10,231,0,0"/>
                     <Button Content="Ustaw wyrównanie dla wszystkich elementów dla wybranego tagu" HorizontalAlignment="Left" VerticalAlignment="Top" Width="369" Margin="55,258,0,0" Height="25" Grid.ColumnSpan="2" Command="{Binding ReplaceAdjustCommand}" />
                     <Label Content="Podtytuł 1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,38,0,0" Height="26" Width="67"/>
@@ -115,6 +116,7 @@
                     <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top"  SelectedIndex="{Binding TekstySelectedItem.CaptionFontSizeI, Mode=TwoWay}" ItemsSource="{Binding FontSizeList}"   Width="120" Grid.Column="1" Margin="0,329,0,0"/>
                     <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top"  SelectedIndex="{Binding TekstySelectedItem.SubCaption1FontSizeI, Mode=TwoWay}" ItemsSource="{Binding FontSizeList}"   Width="120" Grid.Column="1" Margin="0,356,0,0"/>
                     <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top"  SelectedIndex="{Binding TekstySelectedItem.SubCaption2FontSizeI, Mode=TwoWay}" ItemsSource="{Binding FontSizeList}"   Width="120" Grid.Column="1" Margin="0,383,0,0"/>
+                    <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top"  SelectedIndex="{Binding TekstySelectedItem.TitlesAdjustI, Mode=TwoWay}" ItemsSource="{Binding AdjustList}"   Width="120" Grid.Column="1" Margin="135,329,0,0"/>
 
                 </Grid>
             </TabItem>

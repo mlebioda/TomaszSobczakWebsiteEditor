@@ -33,7 +33,7 @@ namespace Strona.ViewModel.Commands
             for(int i = 0; i <  this.ViewModel.Teksty.Items.Count; i++)
             {
                 if (this.ViewModel.Teksty.Items[i].Tag.Equals(this.ViewModel.SelectedTextTag))
-                    this.ViewModel.Teksty.Items[i].AdjustI = this.ViewModel.SelectedAdjust;
+                    this.ViewModel.Teksty.Items[i].ContentAdjustI = this.ViewModel.SelectedContentAdjust;
             }
 
         }
