@@ -85,7 +85,7 @@
                             <DataGridTextColumn Header="Tytuł" Binding="{Binding Caption}"/>
                             <DataGridTextColumn Header="PodTytuł 1" Binding="{Binding SubCaption1}"/>
                             <DataGridTextColumn Header="PodTytuł 2" Binding="{Binding SubCaption2}"/>
-                            <DataGridTextColumn Header="PodTytuł 2" Binding="{Binding Tag}"/>
+                            <DataGridTextColumn Header="Tag" Binding="{Binding Tag}"/>
                             <DataGridTextColumn Header="Wyrównanie zawartości" Binding="{Binding ContentAdjustI}"/>
                             <DataGridTextColumn Header="Wyrównanie tytułów" Binding="{Binding TitlesAdjustI}"/>
                             <DataGridTextColumn Header="Ścieżka" Binding="{Binding Src}"/>
@@ -117,6 +117,7 @@
                     <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top"  SelectedIndex="{Binding TekstySelectedItem.SubCaption1FontSizeI, Mode=TwoWay}" ItemsSource="{Binding FontSizeList}"   Width="120" Grid.Column="1" Margin="0,356,0,0"/>
                     <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top"  SelectedIndex="{Binding TekstySelectedItem.SubCaption2FontSizeI, Mode=TwoWay}" ItemsSource="{Binding FontSizeList}"   Width="120" Grid.Column="1" Margin="0,383,0,0"/>
                     <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top"  SelectedIndex="{Binding TekstySelectedItem.TitlesAdjustI, Mode=TwoWay}" ItemsSource="{Binding AdjustList}"   Width="120" Grid.Column="1" Margin="135,329,0,0"/>
+                    <Label Content="Wyrównanie tytułów:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="135,299,0,0" Height="26" Width="136" Grid.Column="1"/>
 
                 </Grid>
             </TabItem>

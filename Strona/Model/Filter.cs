@@ -27,7 +27,12 @@ namespace Strona.Model
             {
                 if (m_caption != value)
                 {
-                    m_caption = value;
+                    string preparedCaption = value;
+                    if(preparedCaption.Contains("_"))
+                    {
+                        preparedCaption = preparedCaption.Replace('_', ' ');
+                    }
+                    m_caption = preparedCaption;
                     RaisePropertyChanged();
                 }
             }
