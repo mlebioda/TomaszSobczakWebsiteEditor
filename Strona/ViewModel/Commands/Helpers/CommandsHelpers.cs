@@ -619,7 +619,57 @@ namespace Strona.ViewModel.Commands.Helpers
                         serializer.Serialize(writer, item);
                         // {"ExpiryDate":new Date(1230375600000),"Price":0}
                     }
+
+
+
+                    JsonItem newItem = item;
+                    string fileName = Path.GetFileName(dialog.FileName);
+                    string newPath = dialog.FileName.Replace(fileName, fileName + "-serwer");
+
+                    for (int i = 0; i < newItem.Artysta.Items.Count; i++)
+                    {
+                        if (newItem.Artysta.Items[i].Src.Contains("\\"))
+                        {
+                            newItem.Artysta.Items[i].Src = newItem.Artysta.Items[i].Src.Replace("\\", "/");
+                        }
+                    }
+
+                    for (int i = 0; i < newItem.Fotografia.Items.Count; i++)
+                    {
+                        if (newItem.Fotografia.Items[i].Src.Contains("\\"))
+                        {
+                            newItem.Fotografia.Items[i].Src = newItem.Fotografia.Items[i].Src.Replace("\\", "/");
+                        }
+                    }
+
+                    for (int i = 0; i < newItem.Obrazy.Items.Count; i++)
+                    {
+                        if (newItem.Obrazy.Items[i].Src.Contains("\\"))
+                        {
+                            newItem.Obrazy.Items[i].Src = newItem.Obrazy.Items[i].Src.Replace("\\", "/");
+                        }
+                    }
+
+                    for (int i = 0; i < newItem.Teksty.Items.Count; i++)
+                    {
+                        if (newItem.Teksty.Items[i].Src.Contains("\\"))
+                        {
+                            newItem.Teksty.Items[i].Src = newItem.Teksty.Items[i].Src.Replace("\\", "/");
+                        }
+                    }
+
+                    using (StreamWriter sw = new StreamWriter(newPath))
+                    using (JsonWriter writer = new JsonTextWriter(sw))
+                    {
+                        serializer.Serialize(writer, newItem);
+                        // {"ExpiryDate":new Date(1230375600000),"Price":0}
+                    }
                     MessageBox.Show("Gotowe");
+
+
+
+
+
                 }
             }
             catch( Exception e)
@@ -627,30 +677,6 @@ namespace Strona.ViewModel.Commands.Helpers
                 MessageBox.Show(e.Message);
             }
         }
-
-        public static void SaveJson(JsonItem item, string path)
-        {
-            try
-            {
-                    JsonSerializer serializer = new JsonSerializer();
-                    //serializer.Converters.Add(new JavaScriptDateTimeConverter());
-                    serializer.NullValueHandling = NullValueHandling.Ignore;
-
-                    using (StreamWriter sw = new StreamWriter(path))
-                    using (JsonWriter writer = new JsonTextWriter(sw))
-                    {
-                        serializer.Serialize(writer, item);
-                        // {"ExpiryDate":new Date(1230375600000),"Price":0}
-                    }
-                    MessageBox.Show("Gotowe");
- 
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-        }
-
 
         #endregion
         #region Gui
